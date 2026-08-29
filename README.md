@@ -1,6 +1,9 @@
-# AegisVault: On-Chain AI Red-Teaming 🛡️
+# AegisVault: On-Chain AI Red-Teaming 🛡️ (V2)
 
 AegisVault is an Intelligent Contract exploring self-contained semantic security, adversarial LLM evaluation, and prompt-injection bounty pools natively on **GenLayer**.
+
+## V2 Update: GenVM Lint Optimization
+Version 2 resolves a GenVM static analyzer constraint (E010). Previously, the non-deterministic LLM execution was wrapped inside a helper function, causing the linter to flag it as unreachable from the consensus block. In V2, `gl.nondet.exec_prompt` is called directly within both `leader_fn` and `validator_fn`. This ensures explicit trace route visibility for the GenVM linter while maintaining strict categorical consensus.
 
 ## The Concept
 
@@ -16,7 +19,8 @@ An AI sentry guards a secret authorization directive (`OMEGA_RELEASE`). Users su
 
 ## Deployed Artifacts (GenLayer Testnet)
 
-* **Contract Address:** `[0x4e0bF98A9F7fE0000e499Aff3bfC26B4DC70Fda0]`
+* **Contract Address (V2):** `[0x179c7d9bB9Faac4b2a2A2589E79B0aEC2564A00c]`
+* **Successful Defense Tx:** `[0xb72abd75d225f447c7a8a7a38faca6b7c5e13b5a3079079c3432971a4c774158]`
 
 ## Testing in GenLayer Studio
 
@@ -35,4 +39,3 @@ You can interact with the deployed contract directly in GenLayer Studio using th
 ### 3. Read Vault State
 *   **Method:** `get_vault_state`
 *   **Expected Output:** Displays current vault status (`LOCKED` or `UNLOCKED`), attempt counts, and the winner.
-*   
